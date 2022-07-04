@@ -4,13 +4,22 @@ import Login from "./pages/Login";
 import Product from "./pages/Product";
 import ProductList from "./pages/ProductList";
 import Register from "./pages/Register";
+import { BrowserRouter as Router , Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
+  const user=true;
   return (
-    <div>
-      <Home/>
-    </div>
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<Home/>}/>
+        <Route path="/products/:categoty" element={<ProductList/>}/>
+        <Route path="/products/:id" element={<Product/>}/>
+        <Route path="/cart" element={<Cart/>}/>
+        <Route path="/login">{user ? <Navigate to="/"/>:<Login/>}</Route>
+        <Route path="/register" element={<Register/>}/>
+      </Routes>
+    </Router>
   );
-} 
+}
 
 export default App;
